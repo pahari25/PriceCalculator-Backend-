@@ -9,11 +9,14 @@ const cors = require('cors');
 // const authRoutes = require('./routes/auth');
 
 const app = express();
+const url=process.env.DEV_FRONT_URL;
+const url2= process.env.PROD_FRONT_URL;
+console.log(url,url2)
 
 // Middleware
 const corsOptions = {
   // Your frontend's development server URL(s)
-  origin: [process.env.DEV_FRONT_URL, process.env.PROD_FRONT_URL].filter(Boolean),
+  origin: [process.env.PROD_FRONT_URL],
   optionsSuccessStatus: 200
 };
   
