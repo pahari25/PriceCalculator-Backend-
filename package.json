@@ -6,7 +6,7 @@
     "mongoose": "^8.17.2"
   },
   "scripts": {
-  "start": "NODE_ENV=production node server.js",
-  "dev": "NODE_ENV=development nodemon server.js"
+  "start": "NODE_ENV=production node index.js",
+  "dev": "NODE_ENV=development nodemon index.js"
 }
 }
