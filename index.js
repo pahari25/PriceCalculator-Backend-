@@ -19,6 +19,11 @@ const corsOptions = {
   
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Backend server is running successfully.' });
+});
+
 // Routes
 
 
@@ -26,6 +31,9 @@ app.use(express.json());
  app.use('/api/request',requestRoutes)
 // app.use('/api', emailRoutes);
 // app.use('/api/auth', authRoutes);
+
+
+
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI)
