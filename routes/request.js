@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 // Get new Request
-router.post('/send-request', async (req, res) => {
+router.post('/', async (req, res) => {
     const { ids, user_name, email, services, total, currency } = req.body;
     console.log(req.body)
 
