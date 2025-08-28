@@ -16,7 +16,8 @@ console.log(url,url2)
 // Middleware
 const corsOptions = {
   // Your frontend's development server URL(s)
-  origin: "https://servicecat-evokeai.netlify.app",
+  origin: ["https://servicecat-evokeai.netlify.app","http://localhost:5173"],
+
   optionsSuccessStatus: 200
 };
   

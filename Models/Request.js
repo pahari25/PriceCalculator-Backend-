@@ -9,7 +9,7 @@ const requestedServiceSchema = new Schema({
 }, { _id: false });
 
 const estimateRequestSchema = new Schema({
-    ids:{
+    id:{
         type: String,
         required: true,
         // default: () => new Date().getTime().toString(),
