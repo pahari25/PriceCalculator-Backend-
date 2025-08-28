@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Get new Request
 router.post('/', async (req, res) => {
-    const { id,user_name, email, services, total, currency } = req.body;
+    const { token ,user_name, email, services, total, currency } = req.body;
     console.log(req.body)
 
     if (!email || !services || !total || !currency) {
@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     try {
         // Save the request to the database
         const newRequest = new Request({ 
-            id,
+            token,
             user_name,   
             email,
             // Map services to match the sub-schema, ensuring price is captured
@@ -56,8 +56,8 @@ router.get('/', async (req, res) => {
 });
 
 // UPDATE a request status
-router.put('/:id', async (req, res) => {
-  const { id } = req.params;
+router.put('/:token', async (req, res) => {
+  const { token } = req.params;
   const { status } = req.body;
   console.log(req.params ,status)
 
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res) => {
 
   try {
     const request = await Request.findOneAndUpdate(
-      { id: id },
+      { token: token },
       { status }, 
       { new: true, runValidators: true }
     );
@@ -84,14 +84,10 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE a request
-router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
+router.delete('/:token', async (req, res) => {
+    const { token } = req.params;
     try {
-      // If `id` is your custom UUID field, you should use findOneAndDelete.
-      // If you are deleting by MongoDB's default _id, then findByIdAndDelete is correct,
-      // but ensure the frontend sends the _id.
-      const request = await Request.findOneAndDelete({ id: id });
-
+      const request = await Request.findByIdAndDelete(token);
       if (!request) {
         return res.status(404).json({ error: 'No such request' });
         console.log('✘ request not')
