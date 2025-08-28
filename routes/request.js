@@ -5,8 +5,7 @@ const router = express.Router();
 
 // Get new Request
 router.post('/', async (req, res) => {
-    const id=req.body.ids;
-    const { user_name, email, services, total, currency } = req.body;
+    const { id,user_name, email, services, total, currency } = req.body;
     console.log(req.body)
 
     if (!email || !services || !total || !currency) {
@@ -60,7 +59,7 @@ router.get('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
-  console.log(req.params, status)
+  console.log(req.params ,status)
 
   if (!['pending', 'viewed', 'processed'].includes(status)) {
     console.log('✘ Invalid status.')
